@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edu.mapper.SensorDataMapper">
+	<resultMap type="SensorData" id="sensorDataResultMap">
+		<id property="id" column="id" />
+		<result property="sensorid" column="t_sensorid" />
+		<result property="value" column="t_value" />
+		<result property="time" column="t_time" />
+		<result property="bz" column="t_bz" />
+		<result property="addTime" column="addTime" />
+		<association property="sensorType" column="sensorType_id"  
+			select="com.edu.mapper.SensorTypeMapper.getById"/>
+	</resultMap>
+
+	<delete id="deleteById" parameterType="int">
+		delete from t_sensorData where id=#{id};
+	</delete>
+
+	<select id="getById" parameterType="int" resultMap="sensorDataResultMap">
+		SELECT t_sensorData.id,
+			   t_sensorData.t_sensorid,
+			   t_sensorData.t_value,
+			   t_sensorData.t_time,
+			   t_sensorData.t_bz,
+			   t_sensorData.addTime,
+			   t_sensorType.id sensorType_id
+		  FROM t_sensorData, t_sensorType
+		 WHERE t_sensorData.id = #{id}
+		   AND t_sensorData.sensorType_id = t_sensorType.id
+	</select>
+
+	<select id="getList"  resultMap="sensorDataResultMap" parameterType="java.util.Map">
+		SELECT t_sensorData.id,
+			   t_sensorData.t_sensorid,
+			   t_sensorData.t_value,
+			   t_sensorData.t_time,
+			   t_sensorData.t_bz,
+			   t_sensorData.addTime,
+			   t_sensorType.id sensorType_id
+		  FROM t_sensorData, t_sensorType
+		 WHERE 1 = 1
+		   AND t_sensorData.sensorType_id = t_sensorType.id
+		<if test="field == 't_sensorType.stype'">
+			and t_sensorType.t_stype like '%${fieldValue}%'
+		</if>
+		<if test="field == 't_sensorType.bz'">
+			and t_sensorType.t_bz like '%${fieldValue}%'
+		</if>
+		<if test="field == 'sensorid'">
+			and t_sensorData.t_sensorid like '%${fieldValue}%'
+		</if>
+		<if test="field == 'value'">
+			and t_sensorData.t_value like '%${fieldValue}%'
+		</if>
+		<if test="field == 'time'">
+			and t_sensorData.t_time like '%${fieldValue}%'
+		</if>
+		<if test="field == 'bz'">
+			and t_sensorData.t_bz like '%${fieldValue}%'
+		</if>
+		<if test="field == 'addTime'">
+			and t_sensorData.addTime like '%${fieldValue}%'
+		</if>
+	</select>
+
+	<insert id="insert" parameterType="SensorData">
+		INSERT INTO t_sensorData(addTime,t_sensorid, t_value, t_time, t_bz, sensorType_id )
+				VALUES(#{addTime},#{sensorid}, #{value}, #{time}, #{bz}, #{sensorType.id})
+	</insert>
+
+	<update id="update" parameterType="SensorData">
+		UPDATE t_sensorData set t_sensorid=#{sensorid}, t_value=#{value}, t_time=#{time}, t_bz=#{bz}, sensorType_id =#{sensorType.id} 
+				where id=#{id}
+	</update>
+
+</mapper>
+

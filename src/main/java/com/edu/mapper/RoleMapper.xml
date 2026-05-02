@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edu.mapper.RoleMapper">
+	<resultMap type="Role" id="roleResultMap">
+		<id property="id" column="id" />
+		<result property="name" column="t_name" />
+		<result property="bz" column="t_bz" />
+		<result property="addTime" column="addTime" />
+	</resultMap>
+
+	<delete id="deleteById" parameterType="int">
+		delete from t_role where id=#{id};
+	</delete>
+
+	<select id="getById" parameterType="int" resultMap="roleResultMap">
+		SELECT t_role.id,
+			   t_role.t_name,
+			   t_role.t_bz,
+			   t_role.addTime
+		  FROM t_role
+		 WHERE t_role.id = #{id}
+	</select>
+
+	<select id="getList"  resultMap="roleResultMap" parameterType="java.util.Map">
+		SELECT t_role.id,
+			   t_role.t_name,
+			   t_role.t_bz,
+			   t_role.addTime
+		  FROM t_role
+		 WHERE 1 = 1
+		<if test="field == 'name'">
+			and t_role.t_name like '%${fieldValue}%'
+		</if>
+		<if test="field == 'bz'">
+			and t_role.t_bz like '%${fieldValue}%'
+		</if>
+		<if test="field == 'addTime'">
+			and t_role.addTime like '%${fieldValue}%'
+		</if>
+	</select>
+
+	<insert id="insert" parameterType="Role">
+		INSERT INTO t_role(addTime,t_name, t_bz)
+				VALUES(#{addTime},#{name}, #{bz})
+	</insert>
+
+	<update id="update" parameterType="Role">
+		UPDATE t_role set t_name=#{name}, t_bz=#{bz}
+				where id=#{id}
+	</update>
+
+</mapper>
+

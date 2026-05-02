@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edu.mapper.AlarmStatsMapper">
+	<resultMap type="AlarmStats" id="alarmStatsResultMap">
+		<id property="id" column="id" />
+		<result property="count" column="t_count" />
+		<result property="date" column="t_date" />
+		<result property="bz" column="t_bz" />
+		<result property="addTime" column="addTime" />
+		<association property="oilFieldInfo" column="oilFieldInfo_id"  
+			select="com.edu.mapper.OilFieldInfoMapper.getById"/>
+		<association property="aramType" column="aramType_id"  
+			select="com.edu.mapper.AramTypeMapper.getById"/>
+	</resultMap>
+
+	<delete id="deleteById" parameterType="int">
+		delete from t_alarmStats where id=#{id};
+	</delete>
+
+	<select id="getById" parameterType="int" resultMap="alarmStatsResultMap">
+		SELECT t_alarmStats.id,
+			   t_alarmStats.t_count,
+			   t_alarmStats.t_date,
+			   t_alarmStats.t_bz,
+			   t_alarmStats.addTime,
+			   t_oilFieldInfo.id oilFieldInfo_id,
+			   t_aramType.id aramType_id
+		  FROM t_alarmStats, t_oilFieldInfo, t_aramType
+		 WHERE t_alarmStats.id = #{id}
+		   AND t_alarmStats.oilFieldInfo_id = t_oilFieldInfo.id
+		   AND t_alarmStats.aramType_id = t_aramType.id
+	</select>
+
+	<select id="getList"  resultMap="alarmStatsResultMap" parameterType="java.util.Map">
+		SELECT t_alarmStats.id,
+			   t_alarmStats.t_count,
+			   t_alarmStats.t_date,
+			   t_alarmStats.t_bz,
+			   t_alarmStats.addTime,
+			   t_oilFieldInfo.id oilFieldInfo_id,
+			   t_aramType.id aramType_id
+		  FROM t_alarmStats, t_oilFieldInfo, t_aramType
+		 WHERE 1 = 1
+		   AND t_alarmStats.oilFieldInfo_id = t_oilFieldInfo.id
+		<if test="field == 't_oilFieldInfo.location'">
+			and t_oilFieldInfo.t_location like '%${fieldValue}%'
+		</if>
+		<if test="field == 't_oilFieldInfo.status'">
+			and t_oilFieldInfo.t_status like '%${fieldValue}%'
+		</if>
+		<if test="field == 't_oilFieldInfo.production'">
+			and t_oilFieldInfo.t_production like '%${fieldValue}%'
+		</if>
+		<if test="field == 't_oilFieldInfo.bz'">
+			and t_oilFieldInfo.t_bz like '%${fieldValue}%'
+		</if>
+		<if test="field == 't_aramType.stype'">
+			and t_aramType.t_stype like '%${fieldValue}%'
+		</if>
+		<if test="field == 't_aramType.bz'">
+			and t_aramType.t_bz like '%${fieldValue}%'
+		</if>
+		   AND t_alarmStats.aramType_id = t_aramType.id
+		<if test="field == 't_oilFieldInfo.location'">
+			and t_oilFieldInfo.t_location like '%${fieldValue}%'
+		</if>
+		<if test="field == 't_oilFieldInfo.status'">
+			and t_oilFieldInfo.t_status like '%${fieldValue}%'
+		</if>
+		<if test="field == 't_oilFieldInfo.production'">
+			and t_oilFieldInfo.t_production like '%${fieldValue}%'
+		</if>
+		<if test="field == 't_oilFieldInfo.bz'">
+			and t_oilFieldInfo.t_bz like '%${fieldValue}%'
+		</if>
+		<if test="field == 't_aramType.stype'">
+			and t_aramType.t_stype like '%${fieldValue}%'
+		</if>
+		<if test="field == 't_aramType.bz'">
+			and t_aramType.t_bz like '%${fieldValue}%'
+		</if>
+		<if test="field == 'count'">
+			and t_alarmStats.t_count like '%${fieldValue}%'
+		</if>
+		<if test="field == 'date'">
+			and t_alarmStats.t_date like '%${fieldValue}%'
+		</if>
+		<if test="field == 'bz'">
+			and t_alarmStats.t_bz like '%${fieldValue}%'
+		</if>
+		<if test="field == 'addTime'">
+			and t_alarmStats.addTime like '%${fieldValue}%'
+		</if>
+	</select>
+
+	<insert id="insert" parameterType="AlarmStats">
+		INSERT INTO t_alarmStats(addTime,t_count, t_date, t_bz, oilFieldInfo_id , aramType_id )
+				VALUES(#{addTime},#{count}, #{date}, #{bz}, #{oilFieldInfo.id}, #{aramType.id})
+	</insert>
+
+	<update id="update" parameterType="AlarmStats">
+		UPDATE t_alarmStats set t_count=#{count}, t_date=#{date}, t_bz=#{bz}, oilFieldInfo_id =#{oilFieldInfo.id} , aramType_id =#{aramType.id} 
+				where id=#{id}
+	</update>
+
+</mapper>
+

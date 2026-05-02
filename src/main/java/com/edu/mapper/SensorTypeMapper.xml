@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edu.mapper.SensorTypeMapper">
+	<resultMap type="SensorType" id="sensorTypeResultMap">
+		<id property="id" column="id" />
+		<result property="stype" column="t_stype" />
+		<result property="bz" column="t_bz" />
+		<result property="addTime" column="addTime" />
+	</resultMap>
+
+	<delete id="deleteById" parameterType="int">
+		delete from t_sensorType where id=#{id};
+	</delete>
+
+	<select id="getById" parameterType="int" resultMap="sensorTypeResultMap">
+		SELECT t_sensorType.id,
+			   t_sensorType.t_stype,
+			   t_sensorType.t_bz,
+			   t_sensorType.addTime
+		  FROM t_sensorType
+		 WHERE t_sensorType.id = #{id}
+	</select>
+
+	<select id="getList"  resultMap="sensorTypeResultMap" parameterType="java.util.Map">
+		SELECT t_sensorType.id,
+			   t_sensorType.t_stype,
+			   t_sensorType.t_bz,
+			   t_sensorType.addTime
+		  FROM t_sensorType
+		 WHERE 1 = 1
+		<if test="field == 'stype'">
+			and t_sensorType.t_stype like '%${fieldValue}%'
+		</if>
+		<if test="field == 'bz'">
+			and t_sensorType.t_bz like '%${fieldValue}%'
+		</if>
+		<if test="field == 'addTime'">
+			and t_sensorType.addTime like '%${fieldValue}%'
+		</if>
+	</select>
+
+	<insert id="insert" parameterType="SensorType">
+		INSERT INTO t_sensorType(addTime,t_stype, t_bz)
+				VALUES(#{addTime},#{stype}, #{bz})
+	</insert>
+
+	<update id="update" parameterType="SensorType">
+		UPDATE t_sensorType set t_stype=#{stype}, t_bz=#{bz}
+				where id=#{id}
+	</update>
+
+</mapper>
+

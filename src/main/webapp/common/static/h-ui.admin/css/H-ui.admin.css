@@ -1,0 +1,809 @@
+@charset "UTF-8";
+/* -----------H-ui前端框架-------------
+* H-ui.admin.css v2.5
+* http://www.h-ui.net/
+* Created & Modified by guojunhui
+* Date modified 2016.05.31
+*
+* Copyright 2013-2016 北京颖杰联创科技有限公司 All rights reserved.
+* Licensed under MIT license.
+* http://opensource.org/licenses/MIT
+*
+*/
+html{height:100%}
+body{min-height: 100%;position: relative;font-size:14px;color:#333; background-color:#fff}
+a{color:#333}a:hover,a:focus,.maincolor,.maincolor a{color:#06c}
+.bg-1{ background-color:#f5fafe}
+h4{line-height:30px}
+
+/*页面框架*/
+.Hui-header{position:absolute;top:0; right:0; left:0;height:44px;z-index:999; padding:0 15px}
+.Hui-aside{position: absolute;top:44px;bottom:0;left:0;padding-top:10px;width:199px;z-index:99;overflow:auto; background-color:rgba(238,238,238,0.98);_background-color:rgb(238,238,238);border-right: 1px solid #e5e5e5}
+.Hui-article-box{position: absolute;top:44px;right:0;bottom: 0;left:199px; overflow:hidden; z-index:1; background-color:#fff}
+.Hui-article{position: absolute;top:34px;bottom:0;left:0; right:0;overflow:auto;z-index:1}
+.Hui-container{ padding:45px 0 0}
+.Hui-aside,.Hui-article-box,.dislpayArrow{-moz-transition: all 0.2s ease 0s;-webkit-transition: all 0.2s ease 0s;-ms-transition: all 0.2s ease 0s;-o-transition: all 0.2s ease 0s;transition: all 0.2s ease 0s}
+.big-page .Hui-article-box,.big-page .dislpayArrow,.big-page .breadcrumb{left:0px}
+.big-page .Hui-aside{ left:-200px}
+.page-container{ padding:20px}
+@media (max-width: 767px) {
+	.page-container{ padding:15px}
+}
+/*组件*/
+/*logo*/
+
+/*导航*/
+#Hui-nav > ul > li{ font-weight:normal}
+@media (max-width: 767px) {
+	#Hui-nav{display: block; top: 0; left: 65px; right: 65px}
+	#Hui-nav > ul { width: 100%}
+	#Hui-nav > ul > li{ width: 24%;text-align:center;}
+	#Hui-nav > ul > li a{ text-align: center; padding: 0}
+}
+#Hui-userbar{right:20px; position:absolute; top:0;}
+#Hui-userbar > ul > li > a{padding:0 10px}
+
+#Hui-msg .badge{ position:absolute; left:19px; top:4px; font-size:12px; font-weight:normal; padding:1px 5px}
+/*左侧菜单*/
+.Hui-aside .menu_dropdown dl{ margin-bottom:0}
+.Hui-aside .menu_dropdown dt{display:block;line-height:35px;padding-left:15px;cursor:pointer;position:relative;border-bottom: 1px solid #e5e5e5;font-weight:normal}
+.Hui-aside .menu_dropdown dt .menu_dropdown-arrow{ position:absolute;overflow: hidden; top:0; right:15px;transition-duration:0.3s ;transition-property:all}
+.Hui-aside .menu_dropdown dd{ display:none}
+.Hui-aside .menu_dropdown dt.selected .menu_dropdown-arrow{transform: rotate(180deg)}
+.Hui-aside .menu_dropdown dd.selected{display:block; margin-left:0px}
+.Hui-aside .menu_dropdown ul{padding:0px}
+.Hui-aside .menu_dropdown li{line-height:35px;overflow:hidden;zoom:1}
+.Hui-aside .menu_dropdown li a{padding-left:15px; display:block;font-weight: bold; margin:0}
+.Hui-aside .menu_dropdown li a i{ font-weight: normal}
+.Hui-aside .menu_dropdown dd ul{padding:3px 8px}
+.Hui-aside .menu_dropdown dd li{line-height:32px}
+.Hui-aside .menu_dropdown dd li a{line-height:32px;padding-left:26px; border-bottom:none; font-weight:normal}
+.Hui-aside .menu_dropdown li a:hover{text-decoration:none}
+.Hui-aside .menu_dropdown li.current a,.menu_dropdown li.current a:hover{background-color:rgba(255,255,255,0.2)}
+/*菜单收缩切换*/
+.dislpayArrow{position: absolute;top: 0;bottom: 0;left:200px;width:0px; height:100%;z-index:10}
+.dislpayArrow a{ position:absolute; display:block; width:17px; height:61px;top:50%; margin-top:-30px;outline:none}
+.dislpayArrow a.open{ background-position:0 -61px}
+.dislpayArrow a:hover{ text-decoration:none; background-position:right 0}
+.dislpayArrow a.open:hover{background-position:right -61px}
+
+/*选项卡导航*/
+.Hui-tabNav-wp{position:relative; height:35px;overflow:hidden}
+.Hui-tabNav,
+.Hui-tabNav .acrossTab li
+,.Hui-tabNav .acrossTab li em{background-image:url(../images/acrossTab/acrossTab-2.png)}
+.Hui-tabNav{height:35px; padding-right:75px;overflow:hidden; position:relative;background-color:#efeef0; background-repeat: repeat-x; background-position: 0 -175px;}
+.Hui-tabNav .acrossTab{ position:absolute; height:26px; line-height:26px; background:none; top:8px; left:0;padding-top:0}
+.Hui-tabNav .acrossTab li{height:26px;line-height:26px;}
+.Hui-tabNav .acrossTab li em{ right:-16px; height: 26px; width: 16px}
+.loading {
+	border: 16px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 16px solid #3498db;
+	width: 120px;
+	height: 120px;
+	-webkit-animation: spin 2s linear infinite;
+	animation: spin 2s linear infinite;
+	margin-top: 20%;
+	margin-left: 40%;
+}
+
+@-webkit-keyframes spin {
+	0% { -webkit-transform: rotate(0deg); }
+	100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+.show_iframe{ position:absolute; top:0; right:0; left:0; bottom:0;}
+.show_iframe iframe {position: absolute;bottom: 0;height: 100%;width: 100%}
+.Hui-tabNav-more {position: absolute;right:0px;width:70px;top:4px;display: none}
+
+/*面包屑导航*/
+.breadcrumb{background-color:#f5f5f5; padding:0 20px; position:relative; z-index:99}
+@media (max-width: 767px) {
+	.breadcrumb{ padding:0 15px;}
+	.show_iframe{-webkit-overflow-scrolling: touch;overflow-y: scroll;}
+}
+
+/*横向手机 竖向平板*/
+@media (max-width: 767px) {
+	.Hui-aside{ display:none;float:none; width:100%; height:auto; margin-top:0;padding-top:0;bottom:auto}
+	.big-page .Hui-aside{ left:0!important}
+	.menu_dropdown dt{line-height:44px}
+	.menu_dropdown li,.menu_dropdown dd li,.menu_dropdown dd li a{ line-height:44px}
+	.Hui-tabNav{ position:fixed; z-index:998}
+	.Hui-article{ top:44px}
+	.Hui-article-box{ position:static; left:0}
+	.Hui-article-box .pd-20{padding:15px}
+	.Hui-article{left:0}
+	.Hui-container .bk-gray{ border:none}
+	.Hui-container .pd-10{ padding:0}
+}
+
+/*==============以下是业务相关的样式====================*/
+/*权限*/
+.permission-list{ border:solid 1px #eee;}
+.permission-list > dt{ background-color:#efefef;padding:5px 10px}
+.permission-list > dd{ padding:10px; padding-left:30px}
+.permission-list > dd > dl{ border-bottom:solid 1px #eee; padding:5px 0}
+.permission-list > dd > dl > dt{ display:inline-block;float:left;white-space:nowrap;width:100px}
+.permission-list > dd > dl > dd{ margin-left:100px;}
+.permission-list > dd > dl > dd > label{ padding-right:10px}
+
+/*图片预览*/
+.portfolio-area{ margin-right: -20px;}
+.portfolio-area li{position: relative; float: left; margin-right: 20px; width:162px; height:162px;margin-top: 20px;}
+.portfolio-area li.hover{ z-index:9}
+.portfolio-area li .portfoliobox{ position: absolute; top: 0; left: 0; width: 152px; height: 152px;padding:5px;border: solid 1px #eee; background-color: #fff;}
+.portfolio-area li .checkbox{position: absolute; top: 10px; right: 5px; cursor:pointer}
+.portfolio-area li.hover .portfoliobox{ height:auto;padding-bottom:10px;box-shadow:0 1px 3px rgba(68, 68, 68,0.3);-moz-box-shadow:0 1px 3px rgba(68, 68, 68,0.3);-webkit-box-shadow:0 1px 3px rgba(68, 68, 68,0.3)}
+.portfolio-area li .picbox{width: 150px; height: 150px;overflow: hidden;text-align: center;vertical-align:middle;display:table-cell; line-height:150px;}
+.portfolio-area li .picbox img{max-width:150px; max-height:150px;vertical-align:middle;}
+.portfolio-area li .textbox{ display: none; margin-top: 5px;}
+.portfolio-area li.hover .textbox{ display: block;}
+.portfolio-area li label{ display:block; cursor:pointer}
+.hui-list .hui-list-item {
+	position: relative;
+	overflow: hidden;
+	margin-bottom: 5px;
+	font-size: 14px;
+	/*禁止换行*/
+}
+.hui-list .hui-list-item .date {
+	font-size: 12px;
+	font-family: Arial;
+	color: #999;
+}
+.hui-list.hui-list-disc {
+	list-style: inside;
+	list-style-type: disc;
+}
+.hui-list.hui-list-decimal {
+	list-style: inside;
+	list-style-type: decimal;
+}
+.hui-list.hui-list-top .hui-list-item {
+	padding-left: 60px;
+	text-overflow: ellipsis;
+	vertical-align: bottom;
+	white-space: nowrap;
+	height: 20px;
+	list-style: 20px;
+}
+.hui-list.hui-list-top .hui-list-item .num {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 50px;
+	height: 20px;
+	line-height: 20px;
+	color: #fff;
+	background-color: #5a98de;
+	text-align: center;
+}
+
+/*横向手机 竖向平板*/
+@media (max-width: 767px) {
+	.hui-list .hui-list-item {
+		font-size: 18px;
+		padding: 11px 15px;
+		border-bottom: 1px solid #eee;
+	}
+	.hui-list .hui-list-item > a {
+		display: block;
+		margin: -11px -15px;
+	}
+	.hui-list .hui-list-item .date {
+		display: none;
+	}
+	.hui-list .hui-list-item .hui-iconfont {
+		background-size: 9px auto;
+		margin-top: -7px;
+		position: absolute;
+		right: 15px;
+		top: 50%;
+	}
+
+	.night .hui-list > .hui-list-item {
+		border-bottom: 1px solid #1F1F1F;
+	}
+}
+
+.hui-badge {
+	padding: 2px 9px;
+	border-radius: 9px;
+}
+
+.hui-label {
+	padding: 2px 4px;
+	/*圆角*/
+}
+.hui-label.radius {
+	border-radius: 3px;
+}
+
+.hui-label,
+.hui-badge {
+	display: inline-block;
+	font-size: 11.844px;
+	font-weight: bold;
+	line-height: 14px;
+	color: #fff;
+	white-space: nowrap;
+	vertical-align: middle;
+	background-color: #999;
+	overflow: hidden;
+	/*默认*/
+	/*主要*/
+	/*次要*/
+	/*成功*/
+	/*警告*/
+	/*危险*/
+}
+.hui-label:empty,
+.hui-badge:empty {
+	display: none;
+}
+.hui-label:hover, .hui-label:focus,
+.hui-badge:hover,
+.hui-badge:focus {
+	color: #fff;
+	text-decoration: none;
+	cursor: pointer;
+}
+.hui-label.hui-label-default, .hui-label.hui-badge-default, .hui-label.hui-label-default[href], .hui-label.hui-badge-default[href],
+.hui-badge.hui-label-default,
+.hui-badge.hui-badge-default,
+.hui-badge.hui-label-default[href],
+.hui-badge.hui-badge-default[href] {
+	background-color: #e6e6e6;
+	color: #333;
+}
+.hui-label.hui-label-primary, .hui-label.hui-badge-primary, .hui-label.hui-label-primary[href], .hui-label.hui-badge-primary[href],
+.hui-badge.hui-label-primary,
+.hui-badge.hui-badge-primary,
+.hui-badge.hui-label-primary[href],
+.hui-badge.hui-badge-primary[href] {
+	background-color: #5a98de;
+}
+.hui-label.hui-label-secondary, .hui-label.hui-badge-secondary, .hui-label.hui-label-secondary[href], .hui-label.hui-badge-secondary[href],
+.hui-badge.hui-label-secondary,
+.hui-badge.hui-badge-secondary,
+.hui-badge.hui-label-secondary[href],
+.hui-badge.hui-badge-secondary[href] {
+	background-color: #3bb4f2;
+}
+.hui-label.hui-label-success, .hui-label.hui-badge-success, .hui-label.hui-label-success[href], .hui-label.hui-badge-success[href],
+.hui-badge.hui-label-success,
+.hui-badge.hui-badge-success,
+.hui-badge.hui-label-success[href],
+.hui-badge.hui-badge-success[href] {
+	background-color: #5eb95e;
+}
+.hui-label.hui-label-warning, .hui-label.hui-badge-warning, .hui-label.hui-label-warning[href], .hui-label.hui-badge-warning[href],
+.hui-badge.hui-label-warning,
+.hui-badge.hui-badge-warning,
+.hui-badge.hui-label-warning[href],
+.hui-badge.hui-badge-warning[href] {
+	background-color: #f37b1d;
+}
+.hui-label.hui-label-danger, .hui-label.hui-badge-danger, .hui-label.hui-label-danger[href], .hui-label.hui-badge-danger[href],
+.hui-badge.hui-label-danger,
+.hui-badge.hui-badge-danger,
+.hui-badge.hui-label-danger[href],
+.hui-badge.hui-badge-danger[href] {
+	background-color: #dd514c;
+}
+
+.hui-panel {
+	background-color: #fff;
+	border: solid 1px transparent;
+}
+.hui-panel .hui-panel-header {
+	border-bottom: solid 1px transparent;
+	padding: 8px 15px;
+	font-size: 14px;
+	font-weight: 700;
+	margin-bottom: -1px;
+}
+.hui-panel .hui-panel-body {
+	padding: 15px;
+}
+.hui-panel .hui-panel-footer {
+	background-color: #f5f5f5;
+	border-top: 1px solid #ddd;
+	padding: 5px 20px;
+}
+.hui-panel.hui-panel-default {
+	border-color: #ddd;
+}
+.hui-panel.hui-panel-default > .hui-panel-header {
+	border-color: #ddd;
+	background-color: #f5f5f5;
+	color: #444;
+}
+.hui-panel.hui-panel-primary {
+	border-color: #5a98de;
+}
+.hui-panel.hui-panel-primary > .hui-panel-header {
+	border-color: #5a98de;
+	background-color: #5a98de;
+	color: #fff;
+}
+.hui-panel.hui-panel-secondary {
+	border-color: #3bb4f2;
+}
+.hui-panel.hui-panel-secondary > .hui-panel-header {
+	border-color: #3bb4f2;
+	background-color: #3bb4f2;
+	color: #fff;
+}
+.hui-panel.hui-panel-success {
+	border-color: #5eb95e;
+}
+.hui-panel.hui-panel-success > .hui-panel-header {
+	border-color: #5eb95e;
+	background-color: #5eb95e;
+	color: #fff;
+}
+.hui-panel.hui-panel-warning {
+	border-color: #f37b1d;
+}
+.hui-panel.hui-panel-warning > .hui-panel-header {
+	border-color: #f37b1d;
+	background-color: #f37b1d;
+	color: #fff;
+}
+.hui-panel.hui-panel-danger {
+	border-color: #dd514c;
+}
+.hui-panel.hui-panel-danger > .hui-panel-header {
+	border-color: #dd514c;
+	background-color: #dd514c;
+	color: #fff;
+}
+
+.hui-alert {
+	position: relative;
+	padding: 8px 35px 8px 14px;
+	margin-bottom: 20px;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+	background-color: #fcf8e3;
+	border: 1px solid #fbeed5;
+	color: #c09853;
+}
+.hui-alert .hui-iconfont {
+	position: absolute;
+	top: 9px;
+	right: 10px;
+	line-height: 20px;
+	cursor: pointer;
+	color: #000;
+	opacity: 0.2;
+	_color: #666;
+}
+.hui-alert .hui-iconfont.hover {
+	color: #000;
+	opacity: 0.8;
+}
+.hui-alert .hui-alert-message {
+	color: #c09853;
+	font-size: 16px;
+	margin-bottom: 4px;
+}
+.hui-alert .hui-alert-description {
+	font-size: 14px;
+	line-height: 22px;
+}
+.hui-alert.hui-alert-success {
+	color: #468847;
+	background-color: #dff0d8;
+	border-color: #d6e9c6;
+}
+.hui-alert.hui-alert-success .hui-alert-message {
+	color: #468847;
+}
+.hui-alert.hui-alert-danger {
+	color: #b94a48;
+	background-color: #f2dede;
+	border-color: #eed3d7;
+}
+.hui-alert.hui-alert-danger .hui-alert-message {
+	color: #b94a48;
+}
+.hui-alert.hui-alert-error {
+	color: #fff;
+	background-color: #f37b1d;
+	border-color: #e56c0c;
+}
+.hui-alert.hui-alert-error .hui-alert-message {
+	color: #fff;
+}
+.hui-alert.hui-alert-info {
+	color: #31708f;
+	background-color: #d9edf7;
+	border-color: #bce8f1;
+}
+.hui-alert.hui-alert-info .hui-alert-message {
+	color: #31708f;
+}
+.hui-alert.hui-alert-block {
+	padding-top: 14px;
+	padding-bottom: 14px;
+}
+.hui-alert.hui-alert-block > p,
+.hui-alert.hui-alert-block > ul {
+	margin-bottom: 0;
+}
+.hui-alert.hui-alert-block p + p {
+	margin-top: 5px;
+}
+
+/*默认状态*/
+.hui-input-text,
+.hui-textarea {
+	box-sizing: border-box;
+	border: solid 1px #ddd;
+	width: 100%;
+	transition: all 0.2s linear 0s;
+	padding: 5px 10px;
+}
+
+.hui-textarea {
+	height: 100px;
+	resize: none;
+	font-size: 14px;
+	word-break: break-all;
+}
+
+.hui-textarea-numberbar {
+	position: absolute;
+	right: 20px;
+	bottom: 5px;
+	z-index: 1;
+	margin-bottom: 0;
+}
+
+.hui-textarea-length {
+	font-style: normal;
+}
+
+.hui-input-text:hover,
+.hui-textarea:hover {
+	border: solid 1px #3bb4f2;
+}
+
+/*得到焦点后*/
+.hui-input-text.focus,
+.hui-textarea.focus {
+	border: solid 1px #0f9ae0 \9 ;
+	border-color: rgba(82, 168, 236, 0.8);
+	box-shadow: "0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6)";
+}
+
+/*不可点击*/
+.hui-input-text.disabled,
+.hui-textarea.disabled,
+.hui-input-text.disabled.focus,
+.hui-textarea.disabled.focus {
+	background-color: #ededed;
+	cursor: default;
+	border-color: #ddd;
+	box-shadow: inset 0 2px 2px #e8e7e7;
+}
+
+/*只读状态*/
+.hui-input-text.disabled,
+.hui-textarea.disabled {
+	background-color: #e6e6e6;
+	cursor: default;
+}
+
+/*阴影*/
+.hui-input-text.box-shadow,
+.hui-textarea.box-shadow {
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+/*行内元素*/
+.hui-input-text.inline {
+	display: inline-block;
+	width: auto;
+}
+
+.hui-footer {
+	border-top: 1px solid #E8E8E8;
+	padding: 15px 0;
+	font-family: tahoma, Arial;
+	font-size: 12px;
+	color: #999;
+	line-height: 22px;
+	text-align: center;
+}
+.hui-footer a,
+.hui-footer a:hover {
+	color: #999;
+}
+
+.hui-btn {
+	display: inline-block;
+	min-width: 32px;
+	box-sizing: border-box;
+	cursor: pointer;
+	text-align: center;
+	font-weight: 400;
+	white-space: nowrap;
+	vertical-align: middle;
+	-moz-padding-start: npx;
+	-moz-padding-end: npx;
+	border: solid 1px #ddd;
+	background-color: #fff;
+	width: auto;
+	*zoom: 1;
+	*overflow: visible;
+	transition: background-color 0.1s linear;
+	/*默认——灰色  通常用于取消*/
+	/*主要——主色  通常用于确定、提交、购买、支付等*/
+	/*次要按钮*/
+	/*成功*/
+	/*警告*/
+	/*危险*/
+	/*链接*/
+	/*块级按钮*/
+	/* Outline buttons */
+	/*禁用状态*/
+}
+.hui-btn:active, .hui-btn.active {
+	background-color: #ccc;
+	box-shadow: 0 1px 8px rgba(0, 0, 0, 0.125) inset;
+}
+.hui-btn:first-child {
+	*margin-left: 0;
+}
+.hui-btn.hui-btn-default {
+	background-color: #e6e6e6;
+	border-color: #e6e6e6;
+}
+.hui-btn.hui-btn-default:hover, .hui-btn.hui-btn-default:focus, .hui-btn.hui-btn-default:active, .hui-btn.hui-btn-default.active {
+	color: #333;
+	background-color: #c7c7c7;
+	border-color: #c7c7c7;
+}
+.hui-btn.hui-btn-primary {
+	color: #fff;
+	background-color: #5a98de;
+	border-color: #5a98de;
+}
+.hui-btn.hui-btn-primary:hover, .hui-btn.hui-btn-primary:focus, .hui-btn.hui-btn-primary:active, .hui-btn.hui-btn-primary.active {
+	color: #fff;
+	background-color: #0a6999;
+	border-color: #0a6999;
+}
+.hui-btn.hui-btn-secondary {
+	color: #fff;
+	background-color: #3bb4f2;
+	border-color: #3bb4f2;
+}
+.hui-btn.hui-btn-secondary:hover, .hui-btn.hui-btn-secondary:focus, .hui-btn.hui-btn-secondary:active, .hui-btn.hui-btn-secondary.active {
+	color: #fff;
+	background-color: #0f9ae0;
+	border-color: #0f9ae0;
+}
+.hui-btn.hui-btn-success {
+	color: #fff;
+	background-color: #5eb95e;
+	border-color: #5eb95e;
+}
+.hui-btn.hui-btn-success:hover, .hui-btn.hui-btn-success:focus, .hui-btn.hui-btn-success:active, .hui-btn.hui-btn-success.active {
+	color: #fff;
+	background-color: #429842;
+	border-color: #429842;
+}
+.hui-btn.hui-btn-warning {
+	color: #fff;
+	background-color: #f37b1d;
+	border-color: #f37b1d;
+}
+.hui-btn.hui-btn-warning:hover, .hui-btn.hui-btn-warning:focus, .hui-btn.hui-btn-warning:active, .hui-btn.hui-btn-warning.active {
+	color: #fff;
+	background-color: #c85e0b;
+	border-color: #c85e0b;
+}
+.hui-btn.hui-btn-danger {
+	color: #fff;
+	background-color: #dd514c;
+	border-color: #dd514c;
+}
+.hui-btn.hui-btn-danger:hover, .hui-btn.hui-btn-danger:focus, .hui-btn.hui-btn-danger:active, .hui-btn.hui-btn-danger.active {
+	color: #fff;
+	background-color: #c62b26;
+	border-color: #c62b26;
+}
+.hui-btn.hui-btn-link {
+	color: #0e90d2;
+	cursor: pointer;
+	border-color: transparent;
+	background-color: transparent;
+}
+.hui-btn.hui-btn-link:hover, .hui-btn.hui-btn-link:focus, .hui-btn.hui-btn-link:active, .hui-btn.hui-btn-link.active {
+	color: #095f8a;
+	text-decoration: underline;
+	background-color: transparent;
+}
+.hui-btn.hui-btn-dashed {
+	border-style: dashed;
+}
+.hui-btn.hui-btn-block {
+	box-sizing: border-box;
+	display: block;
+	padding-left: 0;
+	padding-right: 0;
+	width: 100%;
+}
+.hui-btn.hui-btn-default-outline {
+	background-color: transparent;
+	border-color: #e6e6e6;
+}
+.hui-btn.hui-btn-default-outline:hover, .hui-btn.hui-btn-default-outline:focus, .hui-btn.hui-btn-default-outline:active, .hui-btn.hui-btn-default-outline.active, .hui-btn.hui-btn-default-outline.focus {
+	color: #333;
+	background-color: transparent;
+	border-color: #c7c7c7;
+}
+.hui-btn.hui-btn-primary-outline {
+	color: #5a98de;
+	background-color: transparent;
+	border-color: #5a98de;
+}
+.hui-btn.hui-btn-primary-outline:hover, .hui-btn.hui-btn-primary-outline:focus, .hui-btn.hui-btn-primary-outline:active, .hui-btn.hui-btn-primary-outline.active, .hui-btn.hui-btn-primary-outline.focus {
+	color: #0a6999;
+	background-color: transparent;
+	border-color: #0a6999;
+}
+.hui-btn.hui-btn-secondary-outline {
+	color: #3bb4f2;
+	background-color: transparent;
+	background-image: none;
+	border-color: #3bb4f2;
+}
+.hui-btn.hui-btn-secondary-outline:hover, .hui-btn.hui-btn-secondary-outline.focus, .hui-btn.hui-btn-secondary-outline:active, .hui-btn.hui-btn-secondary-outline:focus {
+	color: #fff;
+	background-color: #3bb4f2;
+	border-color: #3bb4f2;
+}
+.hui-btn.hui-btn-success-outline {
+	color: #5eb95e;
+	background-color: transparent;
+	background-image: none;
+	border-color: #5eb95e;
+}
+.hui-btn.hui-btn-success-outline:hover, .hui-btn.hui-btn-success-outline:focus, .hui-btn.hui-btn-success-outline:active, .hui-btn.hui-btn-success-outline.active, .hui-btn.hui-btn-success-outline.focus {
+	color: #fff;
+	background-color: #5eb95e;
+	border-color: #5eb95e;
+}
+.hui-btn.hui-btn-warning-outline {
+	color: #f37b1d;
+	background-color: transparent;
+	background-image: none;
+	border-color: #f37b1d;
+}
+.hui-btn.hui-btn-warning-outline:hover, .hui-btn.hui-btn-warning-outline:focus, .hui-btn.hui-btn-warning-outline:active, .hui-btn.hui-btn-warning-outline.active, .hui-btn.hui-btn-warning-outline.focus {
+	color: #fff;
+	background-color: #f37b1d;
+	border-color: #f37b1d;
+}
+.hui-btn.hui-btn-danger-outline {
+	color: #dd514c;
+	background-color: transparent;
+	background-image: none;
+	border-color: #dd514c;
+}
+.hui-btn.hui-btn-danger-outline:hover, .hui-btn.hui-btn-danger-outline:focus, .hui-btn.hui-btn-danger-outline:active, .hui-btn.hui-btn-danger-outline.active, .hui-btn.hui-btn-danger-outline.focus {
+	color: #fff;
+	background-color: #dd514c;
+	border-color: #dd514c;
+}
+.hui-btn.disabled {
+	cursor: not-allowed;
+	pointer-events: none;
+	background-image: none;
+	opacity: 0.65;
+	filter: alpha(opacity=65);
+	box-shadow: none;
+}
+.hui-btn.hui-btn-loading {
+	position: relative;
+}
+
+a.hui-btn:hover,
+a.hui-btn:focus,
+a.hui-btn:active,
+a.hui-btn.active,
+a.hui-btn.disabled,
+a.hui-btn[disabled] {
+	text-decoration: none;
+}
+
+.open > .hui-btn-primary-outline.hui-dropdown-toggle {
+	color: #0a6999;
+	background-color: transparent;
+	border-color: #0a6999;
+}
+
+.open > .hui-btn-secondary-outline.hui-dropdown-toggle {
+	color: #fff;
+	background-color: #3bb4f2;
+	border-color: #3bb4f2;
+}
+
+.open > .hui-btn-success-outline.hui-dropdown-toggle {
+	color: #fff;
+	background-color: #5eb95e;
+	border-color: #5eb95e;
+}
+
+.open > .hui-btn-warning-outline.hui-dropdown-toggle {
+	color: #fff;
+	background-color: #f37b1d;
+	border-color: #f37b1d;
+}
+
+.open > .hui-btn-danger-outline.hui-dropdown-toggle {
+	color: #fff;
+	background-color: #dd514c;
+	border-color: #dd514c;
+}
+
+/*表单组*/
+.hui-form-group {
+	display: inline-block;
+	vertical-align: middle;
+}
+.hui-form-group .hui-input-text {
+	position: relative;
+	vertical-align: top;
+}
+.hui-form-group .hui-btn {
+	position: relative;
+	margin-left: -1px;
+}
+.hui-form-group.radius {
+	overflow: hidden;
+}
+.hui-form-group.radius .hui-input-text {
+	border-radius: 4px 0 0 4px;
+}
+.hui-form-group.radius .hui-btn {
+	border-radius: 0 4px 4px 0;
+}
+.hui-form-group.round {
+	overflow: hidden;
+}
+.hui-form-group.round .hui-input-text {
+	border-radius: 1000px 0 0 1000px;
+}
+.hui-form-group.round .hui-btn {
+	border-radius: 0 1000px 1000px 0;
+}
+
+.hui-tab .hui-tab-header {
+	border-bottom: 1px solid #e8e8e8;
+}
+.hui-tab .hui-tab-header span {
+	cursor: pointer;
+	display: inline-block;
+	height: 40px;
+	line-height: 40px;
+	padding: 0 20px;
+	border-bottom: solid 2px #fff;
+}
+.hui-tab .hui-tab-header span.current {
+	border-bottom-color: #1890ff;
+}
+.hui-tab .hui-tab-content {
+	display: none;
+	padding-top: 20px;
+}

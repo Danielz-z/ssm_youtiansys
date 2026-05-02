@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.edu.model.SensorData" table="t_SensorData">
+		<comment>传感器数据表</comment>
+		<id name="id">
+			<generator class="native" />
+		</id>
+		<property name="sensorid" >
+			<column name="t_sensorid" >
+				<comment>传感器编号</comment>
+			</column>
+		</property>
+		<property name="value" >
+			<column name="t_value" >
+				<comment>数值</comment>
+			</column>
+		</property>
+		<property name="time" >
+			<column name="t_time" >
+				<comment>检测时间</comment>
+			</column>
+		</property>
+		<property name="bz" >
+			<column name="t_bz"  length="5000">
+				<comment>备注</comment>
+			</column>
+		</property>
+		<property name="addTime" type="calendar">
+			<column name="addTime">
+				<comment>插入数据库时间</comment>
+			</column>
+		</property>
+		<many-to-one name="sensorType"  class="com.edu.model.SensorType" outer-join="false" lazy="false">
+			<column name="sensorType_id">
+				<comment>对应SensorType表的ID，在这里作为外键</comment>
+			</column>
+		</many-to-one>
+	</class>
+</hibernate-mapping>

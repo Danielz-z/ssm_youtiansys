@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edu.mapper.DailyAlarmsMapper">
+	<resultMap type="DailyAlarms" id="dailyAlarmsResultMap">
+		<id property="id" column="id" />
+		<result property="status" column="t_status" />
+		<result property="time" column="t_time" />
+		<result property="location" column="t_location" />
+		<result property="bz" column="t_bz" />
+		<result property="addTime" column="addTime" />
+		<association property="oilFieldInfo" column="oilFieldInfo_id"  
+			select="com.edu.mapper.OilFieldInfoMapper.getById"/>
+		<association property="sensorType" column="sensorType_id"  
+			select="com.edu.mapper.SensorTypeMapper.getById"/>
+	</resultMap>
+
+	<delete id="deleteById" parameterType="int">
+		delete from t_dailyAlarms where id=#{id};
+	</delete>
+
+	<select id="getById" parameterType="int" resultMap="dailyAlarmsResultMap">
+		SELECT t_dailyAlarms.id,
+			   t_dailyAlarms.t_status,
+			   t_dailyAlarms.t_time,
+			   t_dailyAlarms.t_location,
+			   t_dailyAlarms.t_bz,
+			   t_dailyAlarms.addTime,
+			   t_oilFieldInfo.id oilFieldInfo_id,
+			   t_sensorType.id sensorType_id
+		  FROM t_dailyAlarms, t_oilFieldInfo, t_sensorType
+		 WHERE t_dailyAlarms.id = #{id}
+		   AND t_dailyAlarms.oilFieldInfo_id = t_oilFieldInfo.id
+		   AND t_dailyAlarms.sensorType_id = t_sensorType.id
+	</select>
+
+	<select id="getList"  resultMap="dailyAlarmsResultMap" parameterType="java.util.Map">
+		SELECT t_dailyAlarms.id,
+			   t_dailyAlarms.t_status,
+			   t_dailyAlarms.t_time,
+			   t_dailyAlarms.t_location,
+			   t_dailyAlarms.t_bz,
+			   t_dailyAlarms.addTime,
+			   t_oilFieldInfo.id oilFieldInfo_id,
+			   t_sensorType.id sensorType_id
+		  FROM t_dailyAlarms, t_oilFieldInfo, t_sensorType
+		 WHERE 1 = 1
+		   AND t_dailyAlarms.oilFieldInfo_id = t_oilFieldInfo.id
+		<if test="field == 't_oilFieldInfo.location'">
+			and t_oilFieldInfo.t_location like '%${fieldValue}%'
+		</if>
+		<if test="field == 't_oilFieldInfo.status'">
+			and t_oilFieldInfo.t_status like '%${fieldValue}%'
+		</if>
+		<if test="field == 't_oilFieldInfo.production'">
+			and t_oilFieldInfo.t_production like '%${fieldValue}%'
+		</if>
+		<if test="field == 't_oilFieldInfo.bz'">
+			and t_oilFieldInfo.t_bz like '%${fieldValue}%'
+		</if>
+		<if test="field == 't_sensorType.stype'">
+			and t_sensorType.t_stype like '%${fieldValue}%'
+		</if>
+		<if test="field == 't_sensorType.bz'">
+			and t_sensorType.t_bz like '%${fieldValue}%'
+		</if>
+		   AND t_dailyAlarms.sensorType_id = t_sensorType.id
+		<if test="field == 't_oilFieldInfo.location'">
+			and t_oilFieldInfo.t_location like '%${fieldValue}%'
+		</if>
+		<if test="field == 't_oilFieldInfo.status'">
+			and t_oilFieldInfo.t_status like '%${fieldValue}%'
+		</if>
+		<if test="field == 't_oilFieldInfo.production'">
+			and t_oilFieldInfo.t_production like '%${fieldValue}%'
+		</if>
+		<if test="field == 't_oilFieldInfo.bz'">
+			and t_oilFieldInfo.t_bz like '%${fieldValue}%'
+		</if>
+		<if test="field == 't_sensorType.stype'">
+			and t_sensorType.t_stype like '%${fieldValue}%'
+		</if>
+		<if test="field == 't_sensorType.bz'">
+			and t_sensorType.t_bz like '%${fieldValue}%'
+		</if>
+		<if test="field == 'status'">
+			and t_dailyAlarms.t_status like '%${fieldValue}%'
+		</if>
+		<if test="field == 'time'">
+			and t_dailyAlarms.t_time like '%${fieldValue}%'
+		</if>
+		<if test="field == 'location'">
+			and t_dailyAlarms.t_location like '%${fieldValue}%'
+		</if>
+		<if test="field == 'bz'">
+			and t_dailyAlarms.t_bz like '%${fieldValue}%'
+		</if>
+		<if test="field == 'addTime'">
+			and t_dailyAlarms.addTime like '%${fieldValue}%'
+		</if>
+	</select>
+
+	<insert id="insert" parameterType="DailyAlarms">
+		INSERT INTO t_dailyAlarms(addTime,t_status, t_time, t_location, t_bz, oilFieldInfo_id , sensorType_id )
+				VALUES(#{addTime},#{status}, #{time}, #{location}, #{bz}, #{oilFieldInfo.id}, #{sensorType.id})
+	</insert>
+
+	<update id="update" parameterType="DailyAlarms">
+		UPDATE t_dailyAlarms set t_status=#{status}, t_time=#{time}, t_location=#{location}, t_bz=#{bz}, oilFieldInfo_id =#{oilFieldInfo.id} , sensorType_id =#{sensorType.id} 
+				where id=#{id}
+	</update>
+
+</mapper>
+

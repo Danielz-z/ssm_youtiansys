@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edu.mapper.GonggaoMapper">
+	<resultMap type="Gonggao" id="gonggaoResultMap">
+		<id property="id" column="id" />
+		<result property="title" column="t_title" />
+		<result property="content" column="t_content" />
+		<result property="shijian" column="t_shijian" />
+		<result property="bz" column="t_bz" />
+		<result property="addTime" column="addTime" />
+	</resultMap>
+
+	<delete id="deleteById" parameterType="int">
+		delete from t_gonggao where id=#{id};
+	</delete>
+
+	<select id="getById" parameterType="int" resultMap="gonggaoResultMap">
+		SELECT t_gonggao.id,
+			   t_gonggao.t_title,
+			   t_gonggao.t_content,
+			   t_gonggao.t_shijian,
+			   t_gonggao.t_bz,
+			   t_gonggao.addTime
+		  FROM t_gonggao
+		 WHERE t_gonggao.id = #{id}
+	</select>
+
+	<select id="getList"  resultMap="gonggaoResultMap" parameterType="java.util.Map">
+		SELECT t_gonggao.id,
+			   t_gonggao.t_title,
+			   t_gonggao.t_content,
+			   t_gonggao.t_shijian,
+			   t_gonggao.t_bz,
+			   t_gonggao.addTime
+		  FROM t_gonggao
+		 WHERE 1 = 1
+		<if test="field == 'title'">
+			and t_gonggao.t_title like '%${fieldValue}%'
+		</if>
+		<if test="field == 'content'">
+			and t_gonggao.t_content like '%${fieldValue}%'
+		</if>
+		<if test="field == 'shijian'">
+			and t_gonggao.t_shijian like '%${fieldValue}%'
+		</if>
+		<if test="field == 'bz'">
+			and t_gonggao.t_bz like '%${fieldValue}%'
+		</if>
+		<if test="field == 'addTime'">
+			and t_gonggao.addTime like '%${fieldValue}%'
+		</if>
+	</select>
+
+	<insert id="insert" parameterType="Gonggao">
+		INSERT INTO t_gonggao(addTime,t_title, t_content, t_shijian, t_bz)
+				VALUES(#{addTime},#{title}, #{content}, #{shijian}, #{bz})
+	</insert>
+
+	<update id="update" parameterType="Gonggao">
+		UPDATE t_gonggao set t_title=#{title}, t_content=#{content}, t_shijian=#{shijian}, t_bz=#{bz}
+				where id=#{id}
+	</update>
+
+</mapper>
+

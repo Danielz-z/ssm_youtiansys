@@ -1,0 +1,88 @@
+package com.edu.model;
+
+/**
+ * author:dyb1296
+ * time:2024-4-10 8:25:14
+ * email:dyb1296@qq.com
+ * 本文件和SSM结构的关系:SSM结构的架构就是JSP（浏览器）发送请求，然后请求到对应的Controller，然后Controller调用Service，Service调用Mapper，mapper调用数据库实现增删改查，最后由Controller返回到JSP完成全过程。
+ * 本文件的作用就是组合数据库实体类
+ * MVC层级划分：本文件在MVC模式中的M层(model)，即模型层
+ */
+import com.edu.ann.Tip;
+import java.sql.Timestamp;
+import com.edu.util.CommonUtil;
+import java.util.Date;
+import system.common.util.DateConvertorChinese;
+public class OilFieldInfo {//油田基本情况表
+	@Tip(value = "主键ID")
+	private int id;//主键，自动增加
+
+	public OilFieldInfo() {
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getId() {
+		return this.id;
+	}
+
+	@Tip(value = "位置")
+	private String location;//位置
+	public void setLocation(String location) {//set方法，用于设置location的值
+		this.location = location;
+	}
+
+	public String getLocation() {//get方法，用于获取location的值
+		return this.location;
+	}
+
+	@Tip(value = "当前状态")
+	private String status;//当前状态
+	public void setStatus(String status) {//set方法，用于设置status的值
+		this.status = status;
+	}
+
+	public String getStatus() {//get方法，用于获取status的值
+		return this.status;
+	}
+
+	@Tip(value = "日产量")
+	private String production;//日产量
+	public void setProduction(String production) {//set方法，用于设置production的值
+		this.production = production;
+	}
+
+	public String getProduction() {//get方法，用于获取production的值
+		return this.production;
+	}
+
+	@Tip(value = "备注")
+	private String bz;//备注
+	public void setBz(String bz) {//set方法，用于设置bz的值
+		this.bz = bz;
+	}
+
+	public String getBz() {//get方法，用于获取bz的值
+		return this.bz;
+	}
+
+	@Tip(value = "插入数据库时间")
+	private Timestamp addTime;//记录本记录添加进数据库的时间
+	public void setAddTime(Timestamp addTime) {
+		this.addTime = addTime;
+	}
+
+	public Timestamp getAddTime() {
+		return this.addTime;
+	}
+
+	public void styleClass(){
+		this.setLocation(CommonUtil.styleString(getLocation()));
+		this.setStatus(CommonUtil.styleString(getStatus()));
+		this.setProduction(CommonUtil.styleString(getProduction()));
+		this.setBz(CommonUtil.styleString(getBz()));
+	}
+
+}

@@ -1,0 +1,29 @@
+# Build output
+target/
+*.class
+
+# IDE and editor files
+.idea/
+.settings/
+.classpath
+.project
+.vscode/
+*.iml
+
+# Logs
+*.log
+logs/
+
+# Local database config
+src/main/resources/jdbc.properties
+
+# Runtime uploads and temporary files
+src/main/webapp/upload/*
+!src/main/webapp/upload/person.png
+!src/main/webapp/upload/.gitkeep
+src/main/webapp/image/*
+!src/main/webapp/image/.gitkeep
+
+# OS files
+.DS_Store
+Thumbs.db

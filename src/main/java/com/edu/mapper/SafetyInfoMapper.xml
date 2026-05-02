@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edu.mapper.SafetyInfoMapper">
+	<resultMap type="SafetyInfo" id="safetyInfoResultMap">
+		<id property="id" column="id" />
+		<result property="shijian" column="t_shijian" />
+		<result property="overall" column="t_overall" />
+		<result property="incident" column="t_incident" />
+		<result property="bz" column="t_bz" />
+		<result property="addTime" column="addTime" />
+		<association property="oilFieldInfo" column="oilFieldInfo_id"  
+			select="com.edu.mapper.OilFieldInfoMapper.getById"/>
+	</resultMap>
+
+	<delete id="deleteById" parameterType="int">
+		delete from t_safetyInfo where id=#{id};
+	</delete>
+
+	<select id="getById" parameterType="int" resultMap="safetyInfoResultMap">
+		SELECT t_safetyInfo.id,
+			   t_safetyInfo.t_shijian,
+			   t_safetyInfo.t_overall,
+			   t_safetyInfo.t_incident,
+			   t_safetyInfo.t_bz,
+			   t_safetyInfo.addTime,
+			   t_oilFieldInfo.id oilFieldInfo_id
+		  FROM t_safetyInfo, t_oilFieldInfo
+		 WHERE t_safetyInfo.id = #{id}
+		   AND t_safetyInfo.oilFieldInfo_id = t_oilFieldInfo.id
+	</select>
+
+	<select id="getList"  resultMap="safetyInfoResultMap" parameterType="java.util.Map">
+		SELECT t_safetyInfo.id,
+			   t_safetyInfo.t_shijian,
+			   t_safetyInfo.t_overall,
+			   t_safetyInfo.t_incident,
+			   t_safetyInfo.t_bz,
+			   t_safetyInfo.addTime,
+			   t_oilFieldInfo.id oilFieldInfo_id
+		  FROM t_safetyInfo, t_oilFieldInfo
+		 WHERE 1 = 1
+		   AND t_safetyInfo.oilFieldInfo_id = t_oilFieldInfo.id
+		<if test="field == 't_oilFieldInfo.location'">
+			and t_oilFieldInfo.t_location like '%${fieldValue}%'
+		</if>
+		<if test="field == 't_oilFieldInfo.status'">
+			and t_oilFieldInfo.t_status like '%${fieldValue}%'
+		</if>
+		<if test="field == 't_oilFieldInfo.production'">
+			and t_oilFieldInfo.t_production like '%${fieldValue}%'
+		</if>
+		<if test="field == 't_oilFieldInfo.bz'">
+			and t_oilFieldInfo.t_bz like '%${fieldValue}%'
+		</if>
+		<if test="field == 'shijian'">
+			and t_safetyInfo.t_shijian like '%${fieldValue}%'
+		</if>
+		<if test="field == 'overall'">
+			and t_safetyInfo.t_overall like '%${fieldValue}%'
+		</if>
+		<if test="field == 'incident'">
+			and t_safetyInfo.t_incident like '%${fieldValue}%'
+		</if>
+		<if test="field == 'bz'">
+			and t_safetyInfo.t_bz like '%${fieldValue}%'
+		</if>
+		<if test="field == 'addTime'">
+			and t_safetyInfo.addTime like '%${fieldValue}%'
+		</if>
+	</select>
+
+	<insert id="insert" parameterType="SafetyInfo">
+		INSERT INTO t_safetyInfo(addTime,t_shijian, t_overall, t_incident, t_bz, oilFieldInfo_id )
+				VALUES(#{addTime},#{shijian}, #{overall}, #{incident}, #{bz}, #{oilFieldInfo.id})
+	</insert>
+
+	<update id="update" parameterType="SafetyInfo">
+		UPDATE t_safetyInfo set t_shijian=#{shijian}, t_overall=#{overall}, t_incident=#{incident}, t_bz=#{bz}, oilFieldInfo_id =#{oilFieldInfo.id} 
+				where id=#{id}
+	</update>
+
+</mapper>
+

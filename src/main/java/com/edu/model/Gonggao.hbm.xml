@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.edu.model.Gonggao" table="t_Gonggao">
+		<comment>公告管理表</comment>
+		<id name="id">
+			<generator class="native" />
+		</id>
+		<property name="title" >
+			<column name="t_title" >
+				<comment>标题</comment>
+			</column>
+		</property>
+		<property name="content" >
+			<column name="t_content" >
+				<comment>内容</comment>
+			</column>
+		</property>
+		<property name="shijian" >
+			<column name="t_shijian" >
+				<comment>发布时间</comment>
+			</column>
+		</property>
+		<property name="bz" >
+			<column name="t_bz"  length="5000">
+				<comment>备注</comment>
+			</column>
+		</property>
+		<property name="addTime" type="calendar">
+			<column name="addTime">
+				<comment>插入数据库时间</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

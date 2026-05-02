@@ -1,0 +1,19 @@
+* text=auto
+
+*.java text
+*.xml text
+*.jsp text
+*.properties text
+*.md text
+*.sql text
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.psd binary
+*.swf binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary

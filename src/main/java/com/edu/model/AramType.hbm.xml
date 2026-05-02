@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.edu.model.AramType" table="t_AramType">
+		<comment>报警类型表</comment>
+		<id name="id">
+			<generator class="native" />
+		</id>
+		<property name="stype" >
+			<column name="t_stype" >
+				<comment>类型</comment>
+			</column>
+		</property>
+		<property name="bz" >
+			<column name="t_bz"  length="5000">
+				<comment>备注</comment>
+			</column>
+		</property>
+		<property name="addTime" type="calendar">
+			<column name="addTime">
+				<comment>插入数据库时间</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>
