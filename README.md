@@ -6,6 +6,10 @@ The system includes modules for user management, oilfield information, sensor ty
 
 > Note: This project uses older dependencies and still contains legacy code and known security risks. It is recommended for learning purposes only and should not be deployed directly to production.
 
+## Screenshot
+
+![Dashboard](docs/screenshots/dashboard.png)
+
 ## Tech Stack
 
 - JDK 8
