@@ -133,9 +133,12 @@ If you encounter table-name case sensitivity issues on different MySQL platforms
 - Several MyBatis XML files use `${fieldValue}` for query string interpolation, which may cause SQL injection risks. For production use, replace it with safe parameter binding or whitelist-based queries.
 - Some dependencies are old, including Spring, Shiro, Log4j, and commons-fileupload. Treat this repository as a learning project.
 - Some Chinese text may have historical encoding issues. If pages display incorrectly, check file encoding and server encoding.
-- This repository does not include an open-source license yet. Choose a license such as MIT or Apache-2.0 before public reuse.
+- This repository is released under the MIT License.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
 
 ## Disclaimer
 
 This project is for learning and reference only. Do not deploy it directly to a public production environment.
-
