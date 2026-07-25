@@ -1,5 +1,7 @@
 # Smart Oilfield Sensing and Control Management System
 
+English | [简体中文][zh-cn]
+
 This is a Java Web management system based on the classic SSM stack. It is mainly intended for learning, coursework, and graduation project reference.
 
 The system includes modules for user management, oilfield information, sensor types, sensor data, safety information, announcements, alarm types, alarm statistics, and daily alarms.
@@ -146,3 +148,5 @@ This project is licensed under the [MIT License](LICENSE).
 ## Disclaimer
 
 This project is for learning and reference only. Do not deploy it directly to a public production environment.
+
+[zh-cn]: README.zh-CN.md
