@@ -26,8 +26,8 @@
 	function topPage() {                                                    
                                                                           
 		var contextPath = "${pageContext.request.contextPath}";             
-		var field = document.getElementById("field").value;                 
-		var fieldValue = document.getElementById("fieldValue").value;       
+		var field = encodeURIComponent(document.getElementById("field").value);
+		var fieldValue = encodeURIComponent(document.getElementById("fieldValue").value);
 		var pageNo = "${pageModel.topPageNo}";                              
 		window.location = contextPath                                         
 				+ '/SensorType/getAllDataInPage.do?pageModel.currentPageNo=' + pageNo     
@@ -36,8 +36,8 @@
                                                                           
 	function previousPage() {                                               
 		var contextPath = "${pageContext.request.contextPath}";             
-		var field = document.getElementById("field").value;                 
-		var fieldValue = document.getElementById("fieldValue").value;       
+		var field = encodeURIComponent(document.getElementById("field").value);
+		var fieldValue = encodeURIComponent(document.getElementById("fieldValue").value);
 		var pageNo = "${pageModel.previousPageNo}";                         
 		window.location = contextPath                                         
 				+ '/SensorType/getAllDataInPage.do?pageModel.currentPageNo=' + pageNo     
@@ -47,8 +47,8 @@
 	function nextPage() {                                                   
                                                                           
 		var contextPath = "${pageContext.request.contextPath}";             
-		var field = document.getElementById("field").value;                 
-		var fieldValue = document.getElementById("fieldValue").value;       
+		var field = encodeURIComponent(document.getElementById("field").value);
+		var fieldValue = encodeURIComponent(document.getElementById("fieldValue").value);
 		var pageNo = "${pageModel.nextPageNo}";                             
 		window.location = contextPath                                         
 				+ '/SensorType/getAllDataInPage.do?pageModel.currentPageNo=' + pageNo     
@@ -57,8 +57,8 @@
                                                                           
 	function bottomPage() {                                                 
 		var contextPath = "${pageContext.request.contextPath}";             
-		var field = document.getElementById("field").value;                 
-		var fieldValue = document.getElementById("fieldValue").value;       
+		var field = encodeURIComponent(document.getElementById("field").value);
+		var fieldValue = encodeURIComponent(document.getElementById("fieldValue").value);
 		var pageNo = "${pageModel.buttomPageNo}";                           
 		window.location = contextPath                                         
 				+ '/SensorType/getAllDataInPage.do?pageModel.currentPageNo=' + pageNo     
